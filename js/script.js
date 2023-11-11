@@ -26,6 +26,7 @@ let citations = [
 let citation = document.querySelector('#citation')
 let auteur   = document.querySelector('#auteur')
 let nouveau  = document.querySelector('#nouveau')
+let body     = document.querySelector('body')
 
 
 // créer une variable aleatoire
@@ -44,4 +45,30 @@ nouveau.addEventListener('click', ()=>{
     auteur.textContent   = citations[aleatoire][1]
 
     index=aleatoire
+
+    // Définition de la fonction getRandomColor pour la couleur de fond du body
+    function getRandomColor() {
+        // Chaîne de caractères contenant tous les chiffres hexadécimaux et lettres de A à F
+        const letters = '0123456789ABCDEF';
+    
+        // Initialisation de la variable color avec le caractère '#' qui indique le début d'une couleur hexadécimale
+        let color = '#';
+    
+        // Boucle pour générer 6 caractères hexadécimaux, formant ainsi une couleur hexadécimale complète
+        for (let i = 0; i < 6; i++) {
+        // Sélection aléatoire d'un caractère hexadécimal parmi ceux présents dans la chaîne letters
+        color += letters[Math.floor(Math.random() * 16)];
+      
+        }
+    
+        // Retourne la couleur générée aléatoirement
+    
+        return color;
+  }
+  let couleur1  = getRandomColor()
+  let couleur2  = getRandomColor()
+  let grandient = `linear-gradient(to right,${couleur1},${couleur2})`
+  body.style.background= grandient
 })
+
+
