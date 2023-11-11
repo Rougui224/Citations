@@ -53,6 +53,7 @@ nouveau.addEventListener('click', ()=>{
     
         // Initialisation de la variable color avec le caractère '#' qui indique le début d'une couleur hexadécimale
         let color = '#';
+        let dernierCouleur       
     
         // Boucle pour générer 6 caractères hexadécimaux, formant ainsi une couleur hexadécimale complète
         for (let i = 0; i < 6; i++) {
@@ -60,13 +61,17 @@ nouveau.addEventListener('click', ()=>{
         color += letters[Math.floor(Math.random() * 16)];
       
         }
-    
         // Retourne la couleur générée aléatoirement
-    
-        return color;
+           return color;
   }
-  let couleur1  = getRandomColor()
-  let couleur2  = getRandomColor()
+  
+    //   generer deux couleur aleatoire differentes
+    let couleur1,couleur2
+    do {
+            couleur1  = getRandomColor()
+            couleur2  = getRandomColor()
+    }while(couleur1==couleur2)
+ 
   let grandient = `linear-gradient(to right,${couleur1},${couleur2})`
   body.style.background= grandient
 })
