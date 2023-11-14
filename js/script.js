@@ -64,7 +64,6 @@ nouveau.addEventListener('click', ()=>{
   
   let gradient =`linear-gradient(to right, ${couleur1}, ${couleur2})`
   body.style.background=gradient
-  console.log(gradient)
 
   // ceci nous evite d'avoir le meme gradient de suite
   derniereCouleur1=couleur1
