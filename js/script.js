@@ -27,53 +27,49 @@ let citation = document.querySelector('#citation')
 let auteur   = document.querySelector('#auteur')
 let nouveau  = document.querySelector('#nouveau')
 let body     = document.querySelector('body')
+let index =0
 
-
-// créer une variable aleatoire
-let aleatoire=0
-let index=0
 
 nouveau.addEventListener('click', ()=>{
-    // cette boucle evite de generer deux fois de suite le meme nombre
-    
-    do{
-        // variable aleatoire
-        aleatoire=Math.floor(Math.random()*citations.length)
+  // on crée la variable aléatoire
+  let variableAleatoire 
+  do{
+      variableAleatoire= Math.floor(Math.random()* citations.length)
+  }while(variableAleatoire==index)
 
-    }while(index==aleatoire)
-    citation.textContent = citations[aleatoire][0]
-    auteur.textContent   = citations[aleatoire][1]
+  citation.textContent = citations[variableAleatoire][0]
+  auteur.textContent   = citations[variableAleatoire][1]
 
-    index=aleatoire
+  // on stock le dernier nombre generer dans la variable index, ainsi notre boucle evitera de nous donner deux fois de suite le meme nombre
+  index=variableAleatoire
 
-    // Définition de la fonction getRandomColor pour la couleur de fond du body
-    function getRandomColor() {
-        // Chaîne de caractères contenant tous les chiffres hexadécimaux et lettres de A à F
-        const letters = '0123456789ABCDEF';
-    
-        // Initialisation de la variable color avec le caractère '#' qui indique le début d'une couleur hexadécimale
-        let color = '#';
-        let dernierCouleur       
-    
-        // Boucle pour générer 6 caractères hexadécimaux, formant ainsi une couleur hexadécimale complète
-        for (let i = 0; i < 6; i++) {
-        // Sélection aléatoire d'un caractère hexadécimal parmi ceux présents dans la chaîne letters
-        color += letters[Math.floor(Math.random() * 16)];
-      
-        }
-        // Retourne la couleur générée aléatoirement
-           return color;
+  // pour le background
+
+  // on definie une variable qui contient tous les nombres et chiffres des couleurs exadecimales
+  let lettres='ABCDEF0123456789'
+  // on a ici la fonction generartrice de couleur
+  function generateurDeCouleur(){
+    let couleurGenere='#'
+    for(let i=0; i<6;i++){
+    couleurGenere+=lettres[Math.floor(Math.random()*16)]
+    }
+    return couleurGenere
   }
+  // on a ici la boucle qui evite que nos deux couleurs soient identiques
+  let couleur1,couleur2,derniereCouleur1,derniereCouleur2
+  do{
+     couleur1=generateurDeCouleur()
+     couleur2=generateurDeCouleur()
+  }while(couleur1==couleur2 ||derniereCouleur1===couleur1||derniereCouleur2===couleur2 )
   
-    //   generer deux couleur aleatoire differentes
-    let couleur1,couleur2
-    do {
-            couleur1  = getRandomColor()
-            couleur2  = getRandomColor()
-    }while(couleur1==couleur2)
- 
-  let grandient = `linear-gradient(to right,${couleur1},${couleur2})`
-  body.style.background= grandient
+  let gradient =`linear-gradient(to right, ${couleur1}, ${couleur2})`
+  body.style.background=gradient
+  console.log(gradient)
+
+  // ceci nous evite d'avoir le meme gradient de suite
+  derniereCouleur1=couleur1
+  derniereCouleur2=couleur2
+
 })
 
 
